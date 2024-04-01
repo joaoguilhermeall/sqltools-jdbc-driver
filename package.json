@@ -1,0 +1,48 @@
+{
+  "name": "sqltools-jdbc-driver",
+  "displayName": "SQLTools JDBC Driver",
+  "description": "SQLTools Driver for JDBC connections.",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.87.0",
+    "node": "^18.20.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "sqltools-jdbc-driver.helloWorld",
+        "title": "Hello World"
+      }
+    ]
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "npm run compile && npm run lint",
+    "lint": "eslint src --ext ts",
+    "test": "vscode-test"
+  },
+  "devDependencies": {
+    "@sqltools/types": "^0.1.7",
+    "@types/mocha": "^10.0.6",
+    "@types/node": "18.x",
+    "@types/vscode": "^1.87.0",
+    "@typescript-eslint/eslint-plugin": "^7.4.0",
+    "@typescript-eslint/parser": "^7.4.0",
+    "@vscode/test-cli": "^0.0.8",
+    "@vscode/test-electron": "^2.3.9",
+    "eslint": "^8.57.0",
+    "typescript": "^5.3.3"
+  },
+  "dependencies": {
+    "@sqltools/base-driver": "^0.1.11",
+    "jdbc": "^0.7.6",
+    "uuid": "^9.0.1"
+  }
+}
