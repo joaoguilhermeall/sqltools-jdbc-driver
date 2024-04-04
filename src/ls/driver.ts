@@ -52,22 +52,19 @@ class JDBCSqlToolsClient extends JDBC {
               return reject(err);
             }
 
+            if (resultset === null) {
+              statement.close(() => {});
+              return resolve([{ results: "No results" }] as any);
+            } else if (typeof resultset !== "object") {
+              return resolve([{ results: resultset }] as any);
+            }
+
             resultset.toObjArray((err, results) => {
               statement.close(() => {});
 
               if (err) {
                 return reject(err);
               }
-
-              if (typeof results === "undefined" || results === null) {
-                return resolve([{ results: "No results" }] as any);
-              } else if (
-                typeof results === "string" ||
-                typeof results === "number"
-              ) {
-                return resolve([{ results }] as any);
-              }
-
               return resolve(results);
             });
           });

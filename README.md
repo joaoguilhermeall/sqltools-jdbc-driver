@@ -1,71 +1,34 @@
-# sqltools-jdbc-driver README
+# SQLTools JDBC Driver
 
-This is the README for your extension "sqltools-jdbc-driver". After writing up a brief description, we recommend including the following sections.
+SQLTools JDBC Driver is a VS Code extension that provides support for JDBC connections.
 
 ## Features
 
-Describe specific features of your extension including screenshots of your extension in action. Image paths are relative to this README file.
+- Connect to any database that provides a JDBC driver.
+- Execute SQL queries directly from VS Code.
+- Supports SQLTools features like bookmarks, query history, results export, and more.
 
-For example if there is an image subfolder under your extension project workspace:
+## Getting Started
 
-\!\[feature X\]\(images/feature-x.png\)
+1. Install the extension from the VS Code marketplace.
+2. Configure your JDBC connection in the SQLTools settings. You will need to provide the JDBC connection string, the path to the JDBC driver JAR file, and the JDBC driver class name.
 
-> Tip: Many popular extensions utilize animations. This is an excellent way to show off your extension! We recommend short, focused animations that are easy to follow.
+## Contributing
 
-## Requirements
+Contributions are welcome! Please read the contributing guidelines before getting started.
 
-If you have any requirements or dependencies, add a section describing those and how to install and configure them.
+## License
 
-## Extension Settings
+This project is licensed under the MIT License. See the LICENSE file for details.
 
-Include if your extension adds any VS Code settings through the `contributes.configuration` extension point.
+## Contact
 
-For example:
+If you have any questions, issues, or suggestions, please open an issue on the [GitHub repository](https://github.com/joaoguilhermeall/sqltools-jdbc-driver).
 
-This extension contributes the following settings:
+## Acknowledgements
 
-* `myExtension.enable`: Enable/disable this extension.
-* `myExtension.thing`: Set to `blah` to do something.
+This project is based on the SQLTools extension and uses the SQLTools API.
 
-## Known Issues
+## Disclaimer
 
-Calling out known issues can help limit users opening duplicate issues against your extension.
-
-## Release Notes
-
-Users appreciate release notes as you update your extension.
-
-### 1.0.0
-
-Initial release of ...
-
-### 1.0.1
-
-Fixed issue #.
-
-### 1.1.0
-
-Added features X, Y, and Z.
-
----
-
-## Following extension guidelines
-
-Ensure that you've read through the extensions guidelines and follow the best practices for creating your extension.
-
-* [Extension Guidelines](https://code.visualstudio.com/api/references/extension-guidelines)
-
-## Working with Markdown
-
-You can author your README using Visual Studio Code. Here are some useful editor keyboard shortcuts:
-
-* Split the editor (`Cmd+\` on macOS or `Ctrl+\` on Windows and Linux).
-* Toggle preview (`Shift+Cmd+V` on macOS or `Shift+Ctrl+V` on Windows and Linux).
-* Press `Ctrl+Space` (Windows, Linux, macOS) to see a list of Markdown snippets.
-
-## For more information
-
-* [Visual Studio Code's Markdown Support](http://code.visualstudio.com/docs/languages/markdown)
-* [Markdown Syntax Reference](https://help.github.com/articles/markdown-basics/)
-
-**Enjoy!**
+This is not an official product of SQLTools or any database vendors. It is developed and maintained independently.
