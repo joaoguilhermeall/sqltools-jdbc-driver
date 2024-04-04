@@ -7,19 +7,38 @@
     "vscode": "^1.87.0",
     "node": "^18.20.0"
   },
+  "publisher": "joaoguilhermeall",
+  "license": "MIT",
+  "repository": {
+    "url": "https://github.com/joaoguilhermeall/sqltools-jdbc-driver",
+    "type": "git"
+  },
+  "bugs": {},
+  "icon": "icons/icon.png",
+  "keywords": [
+    "sqltools",
+    "sqltools-driver",
+    "java",
+    "jdbc",
+    "database",
+    "impala"
+  ],
   "categories": [
+    "Programming Languages",
+    "Snippets",
+    "Formatters",
     "Other"
   ],
-  "activationEvents": [],
-  "main": "./out/extension.js",
-  "contributes": {
-    "commands": [
-      {
-        "command": "sqltools-jdbc-driver.helloWorld",
-        "title": "Hello World"
-      }
-    ]
-  },
+  "extensionDependencies": [
+    "mtxr.sqltools"
+  ],
+  "activationEvents": [
+    "*",
+    "onLanguage:sql",
+    "onCommand:sqltools.*"
+  ],
+  "main": "./out/src/extension.js",
+  "contributes": {},
   "scripts": {
     "vscode:prepublish": "npm run compile",
     "compile": "tsc -p ./",

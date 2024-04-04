@@ -1,26 +1,75 @@
-// The module 'vscode' contains the VS Code extensibility API
-// Import the module and reference it with the alias vscode in your code below
-import * as vscode from 'vscode';
+import {
+  IDriverExtensionApi,
+  IExtension,
+  IExtensionPlugin,
+} from "@sqltools/types";
+import * as vscode from "vscode";
+import { ExtensionContext } from "vscode";
+import { displayName, name, publisher } from "../package.json";
+import { DRIVER_ALIASES } from "./constants";
 
-// This method is called when your extension is activated
-// Your extension is activated the very first time the command is executed
-export function activate(context: vscode.ExtensionContext) {
+export async function activate(
+  extContext: ExtensionContext
+): Promise<IDriverExtensionApi> {
+  const sqltools = vscode.extensions.getExtension<IExtension>("mtxr.sqltools");
+  if (!sqltools) {
+    throw new Error("SQLTools not installed");
+  }
+  await sqltools.activate();
 
-	// Use the console to output diagnostic information (console.log) and errors (console.error)
-	// This line of code will only be executed once when your extension is activated
-	console.log('Congratulations, your extension "sqltools-jdbc-driver" is now active!');
+  const api = sqltools.exports;
 
-	// The command has been defined in the package.json file
-	// Now provide the implementation of the command with registerCommand
-	// The commandId parameter must match the command field in package.json
-	let disposable = vscode.commands.registerCommand('sqltools-jdbc-driver.helloWorld', () => {
-		// The code you place here will be executed every time your command is executed
-		// Display a message box to the user
-		vscode.window.showInformationMessage('Hello World from SQLTools JDBC Driver!');
-	});
-
-	context.subscriptions.push(disposable);
+  const extensionId = `${publisher}.${name}`;
+  const driver: IExtensionPlugin = {
+    extensionId,
+    name: `${displayName}`,
+    type: "driver",
+    async register(extension) {
+      extension.resourcesMap().set(`driver/${DRIVER_ALIASES[0].value}/icons`, {
+        active: extContext.asAbsolutePath("icons/active.png"),
+        default: extContext.asAbsolutePath("icons/default.png"),
+        inactive: extContext.asAbsolutePath("icons/inactive.png"),
+      });
+      DRIVER_ALIASES.forEach(({ value }) => {
+        extension.resourcesMap().set(`driver/${value}/icons`, {
+          active: extContext.asAbsolutePath(`icons/${value}/active.png`),
+          default: extContext.asAbsolutePath(`icons/${value}/default.png`),
+          inactive: extContext.asAbsolutePath(`icons/${value}/inactive.png`),
+        });
+        extension
+          .resourcesMap()
+          .set(`driver/${value}/extension-id`, extensionId);
+        extension
+          .resourcesMap()
+          .set(
+            `driver/${value}/connection-schema`,
+            extContext.asAbsolutePath("connection.schema.json")
+          );
+        extension
+          .resourcesMap()
+          .set(
+            `driver/${value}/ui-schema`,
+            extContext.asAbsolutePath("ui.schema.json")
+          );
+      });
+      await extension.client.sendRequest("ls/RegisterPlugin", {
+        path: extContext.asAbsolutePath("out/src/ls/plugin.js"),
+      });
+    },
+  };
+  api.registerPlugin(driver);
+  return {
+    driverName: displayName,
+    parseBeforeSaveConnection: ({ connInfo }) => {
+      console.log("parseBeforeSaveConnection", connInfo);
+      return connInfo;
+    },
+    parseBeforeEditConnection: ({ connInfo }) => {
+      console.log("parseBeforeSaveConnection", connInfo);
+      return connInfo;
+    },
+    driverAliases: DRIVER_ALIASES,
+  };
 }
 
-// This method is called when your extension is deactivated
 export function deactivate() {}

@@ -1,0 +1,26 @@
+{
+  "ui:order": [
+    "dialectName",
+    "jdbcUrl",
+    "driverJarPath",
+    "driverJarClass",
+    "jdbcUsername",
+    "jdbcPassword",
+    "jdbcAdditionalProperties"
+  ],
+  "dialectName": {
+    "ui:widget": "select"
+  },
+  "driverJarPath": {
+    "ui:widget": "file",
+    "ui:options": {
+      "accept": ".jar"
+    }
+  },
+  "jdbcPassword": {
+    "ui:widget": "password"
+  },
+  "jdbcAdditionalProperties": {
+    "ui:widget": "textarea"
+  }
+}

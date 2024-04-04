@@ -1,0 +1,51 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "title": "JDBC Connection",
+  "properties": {
+    "dialectName": {
+      "title": "Dialect",
+      "type": "string",
+      "enum": [
+        "impala"
+      ]
+    },
+    "jdbcUrl": {
+      "title": "JDBC URL",
+      "type": "string",
+      "minLength": 4
+    },
+    "driverJarPath": {
+      "title": "Driver Jar",
+      "type": "string",
+      "minLength": 1
+    },
+    "driverJarClass": {
+      "title": "Driver Class",
+      "type": "string",
+      "minLength": 1
+    },
+    "jdbcUsername": {
+      "title": "Username",
+      "type": "string",
+      "minLength": 1
+    },
+    "jdbcPassword": {
+      "title": "Password",
+      "type": "string",
+      "minLength": 1,
+      "password": true
+    },
+    "jdbcAdditionalProperties": {
+      "title": "Additional Properties",
+      "type": "string",
+      "minLength": 1
+    }
+  },
+  "required": [
+    "dialectName",
+    "jdbcUrl",
+    "driverJarPath",
+    "driverJarClass"
+  ]
+}
