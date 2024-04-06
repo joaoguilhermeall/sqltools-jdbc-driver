@@ -6,6 +6,8 @@
     "driverJarClass",
     "jdbcUsername",
     "jdbcPassword",
+    "maxPoolSize",
+    "maxIdleTime",
     "jdbcAdditionalProperties"
   ],
   "dialectName": {
@@ -19,6 +21,12 @@
   },
   "jdbcPassword": {
     "ui:widget": "password"
+  },
+  "maxPoolSize": {
+    "ui:widget": "updown"
+  },
+  "maxIdleTime": {
+    "ui:widget": "updown"
   },
   "jdbcAdditionalProperties": {
     "ui:widget": "textarea"

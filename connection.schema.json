@@ -36,6 +36,18 @@
       "minLength": 1,
       "password": true
     },
+    "maxPoolSize": {
+      "title": "Maximum Pool Size",
+      "type": "integer",
+      "default": 5,
+      "minimum": 1
+    },
+    "maxIdleTime": {
+      "title": "Max Idle Time in Milliseconds",
+      "type": "integer",
+      "default": 60000,
+      "minimum": 1
+    },
     "jdbcAdditionalProperties": {
       "title": "Additional Properties",
       "type": "string",

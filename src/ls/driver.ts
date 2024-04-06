@@ -13,6 +13,7 @@ import jinst from "jdbc/lib/jinst";
 import { v4 as generateId } from "uuid";
 import { WorkspaceFolder } from "vscode-languageserver-protocol";
 import {
+  IFormJdbcConnection,
   IConnectionObject,
   IDialect,
   IDialectNames,
@@ -52,7 +53,7 @@ class JDBCSqlToolsClient extends JDBC {
               return reject(err);
             }
 
-            if (resultset === null) {
+            if (!resultset) {
               statement.close(() => {});
               return resolve([{ results: "No results" }] as any);
             } else if (typeof resultset !== "object") {
@@ -88,7 +89,7 @@ class JDBCSqlToolsClient extends JDBC {
 }
 
 export default class JdbcDriver
-  extends AbstractDriver<IJdbc, any>
+  extends AbstractDriver<IJdbc, IFormJdbcConnection>
   implements IConnectionDriver
 {
   dialectName: IDialectNames;
@@ -116,7 +117,13 @@ export default class JdbcDriver
       url: this.credentials.jdbcUrl,
       drivername: this.credentials.driverJarClass,
       minpoolsize: 1,
-      maxpoolsize: 5,
+      maxpoolsize: this.credentials?.maxPoolSize || 1,
+      maxidle: this.credentials?.maxIdleTime || 60000,
+      keepalive: {
+        interval: 60000,
+        query: "SELECT 1",
+        enabled: false,
+      },
       user: this.credentials.jdbcUsername,
       password: this.credentials.jdbcPassword,
       properties: {},

@@ -50,13 +50,16 @@ export interface IDialect {
   ) => Promise<NSDatabase.SearchableItem[]>;
 }
 
-type IConnectionJdbc = {
+type IFormJdbcConnection = {
   dialectName: IDialectNames;
   jdbcUrl: string;
   driverJarPath: string;
   driverJarClass: string;
   jdbcUsername?: string;
   jdbcPassword?: string;
+  minPoolSize?: number;
+  maxPoolSize?: number;
+  maxIdleTime?: number;
   jdbcAdditionalProperties?: string;
 };
 
@@ -65,6 +68,12 @@ type IJdbcConfig = {
   drivername: string;
   minpoolsize: number;
   maxpoolsize: number;
+  maxidle: number;
+  keepalive: {
+    interval: number;
+    query: string;
+    enabled: boolean;
+  };
   user?: string;
   password?: string;
   properties?: {} & Record<string, any>;
