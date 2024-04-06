@@ -2,7 +2,7 @@
   "name": "sqltools-jdbc-driver",
   "displayName": "SQLTools JDBC Driver",
   "description": "SQLTools Driver for JDBC connections.",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "engines": {
     "vscode": "^1.87.0",
     "node": "^18.20.0"
